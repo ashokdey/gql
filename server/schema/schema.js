@@ -4,6 +4,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLSchema,
+  GraphQLID,
 } = graphQL;
 
 // sample data
@@ -16,7 +17,7 @@ const booksDB = [
 const Book = new GraphQLObjectType({
   name: 'Book',
   fields: () => ({
-    id: { type: GraphQLString },
+    id: { type: GraphQLID },
     name: { type: GraphQLString },
     genre: { type: GraphQLString },
   }),
@@ -29,7 +30,7 @@ const RootQuery = new GraphQLObjectType({
     book: {
       type: Book,
       args: {
-        id: { type: GraphQLString },
+        id: { type: GraphQLID },
       },
       resolve(parent, args) {
         // get data from database
