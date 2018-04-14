@@ -9,12 +9,10 @@ const {
 const {
   Book,
   booksDB,
-} = require('./Book');
-
-const {
   Author,
   authorsDB,
-} = require('./Author');
+} = require('./Schemas');
+
 
 // define root query
 const RootQuery = new GraphQLObjectType({
