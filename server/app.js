@@ -1,6 +1,7 @@
 const express = require('express');
 const graphQLHTTP = require('express-graphql');
 
+const schema = require('./schema/schema');
 // Assign a port for the app to listen
 const PORT = 3000;
 
@@ -8,7 +9,7 @@ const app = express();
 
 // use the graphql middleware to accept ql queries
 app.use('/ql', graphQLHTTP({
-
+  schema,
 }));
 
 app.listen(PORT, () => {

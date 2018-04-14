@@ -6,6 +6,12 @@ const {
   GraphQLSchema,
 } = graphQL;
 
+// sample data
+const booksDB = [
+  { id: '12', name: 'The Final Empire', genre: 'Fantasy' },
+  { id: '123', name: 'The Long Earth', genre: 'Sci-Fi' },
+];
+
 // define a book schema
 const Book = new GraphQLObjectType({
   name: 'Book',
@@ -27,6 +33,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         // get data from database
+        return booksDB.filter(el => el.id === args.id);
       }
     }
   },
