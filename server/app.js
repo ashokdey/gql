@@ -6,6 +6,11 @@ const PORT = 3000;
 
 const app = express();
 
+// use the graphql middleware to accept ql queries
+app.use('/ql', graphQLHTTP({
+
+}));
+
 app.listen(PORT, () => {
   console.log(`Running at: http://localhost:${PORT}`);
 });
