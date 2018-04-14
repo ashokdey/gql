@@ -48,7 +48,8 @@ const Author = new GraphQLObjectType({
     books: {
       type: new GraphQLList(Book),
       resolve(parent, args) {
-        return booksDB.find(el => el.authorId === parent.id);
+        // using filter to get list of all books matched
+        return booksDB.filter(el => el.authorId === parent.id);
       }
     }
   }),
