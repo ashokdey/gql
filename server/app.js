@@ -10,6 +10,7 @@ const app = express();
 // use the graphql middleware to accept ql queries
 app.use('/ql', graphQLHTTP({
   schema,
+  graphiql: true,
 }));
 
 app.listen(PORT, () => {
