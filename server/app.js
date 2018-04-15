@@ -2,6 +2,7 @@ const express = require('express');
 const graphQLHTTP = require('express-graphql');
 
 const schema = require('./schema');
+require('./db');
 // Assign a port for the app to listen
 const PORT = 3000;
 

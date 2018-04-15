@@ -10,7 +10,7 @@ const BookSchema = new mongoose.Schema({
     required: [true, 'Book genre is required'],
   },
   authorId: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Authors',
   }
 });

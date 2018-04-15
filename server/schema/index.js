@@ -5,7 +5,13 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLList,
+  GraphQLString,
+  GraphQLInt,
 } = graphQL;
+
+// require the mongoose models
+const BookModel = require('../models/BookModel');
+const AuthorModel = require('../models/AuthorModel');
 
 const {
   Book,
@@ -53,6 +59,30 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addAuthor: {
+      type: Author,
+      args: {
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        const author = new AuthorModel({
+          name: args.name,
+          age: args.age,
+        });
+
+        // save the user to database
+        author.save();
+      }
+    },
+  },
+});
+
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 })
