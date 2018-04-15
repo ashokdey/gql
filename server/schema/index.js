@@ -32,13 +32,13 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         // get data from database
-        return booksDB.find(el => el.id === args.id);
+        return BookModel.findById(args.id);
       }
     },
     books: {
       type: new GraphQLList(Book),
       resolve(parent, args) {
-        return booksDB;
+        return BookModel.find();
       },
     },
     author: {
@@ -47,13 +47,13 @@ const RootQuery = new GraphQLObjectType({
         id: { type: GraphQLID },
       },
       resolve(parent, args) {
-        return authorsDB.find(el => el.id === args.id);
+        return AuthorModel.findById(args.id);
       }
     },
     authors: {
       type: new GraphQLList(Author),
       resolve(parent, args) {
-        return authorsDB;
+        return AuthorModel.find();
       }
     },
   },

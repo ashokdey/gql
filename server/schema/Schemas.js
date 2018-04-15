@@ -8,19 +8,9 @@ const {
   GraphQLList,
 } = graphQL;
 
-// sample data
-const booksDB = [
-  { id: '12', name: 'The Final Empire', genre: 'Fantasy', authorId: '21' },
-  { id: '123', name: 'The Long Earth', genre: 'Sci-Fi', authorId: '213' },
-  { id: '123', name: 'The Hero of Ages', genre: 'Sci-Fi', authorId: '21' },
-  { id: '123', name: 'The Color of Magic', genre: 'Sci-Fi', authorId: '213' },
-  { id: '123', name: 'The Light Fantastic', genre: 'Sci-Fi', authorId: '213' },
-];
-
-const authorsDB = [
-  { id: '21', name: 'Brandon Sanderson', age: 42 },
-  { id: '213', name: 'Terry Pratchett', age: 66 },
-];
+// require the mongoose models
+const BookModel = require('../models/BookModel');
+const AuthorModel = require('../models/AuthorModel');
 
 // define a book schema
 const Book = new GraphQLObjectType({
@@ -32,7 +22,7 @@ const Book = new GraphQLObjectType({
     author: {
       type: Author,
       resolve(parent, args) {
-        return authorsDB.find(el => el.id === parent.authorId);
+        return AuthorModel.findById(parent.authorId);
       }
     }
   }),
@@ -49,7 +39,7 @@ const Author = new GraphQLObjectType({
       type: new GraphQLList(Book),
       resolve(parent, args) {
         // using filter to get list of all books matched
-        return booksDB.filter(el => el.authorId === parent.id);
+        return BookModel.find({ authorId: parent.id });
       }
     },
   }),
@@ -58,6 +48,4 @@ const Author = new GraphQLObjectType({
 module.exports = {
   Book,
   Author,
-  authorsDB,
-  booksDB,
 };
