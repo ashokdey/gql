@@ -51,7 +51,7 @@ const Author = new GraphQLObjectType({
         // using filter to get list of all books matched
         return booksDB.filter(el => el.authorId === parent.id);
       }
-    }
+    },
   }),
 });
 

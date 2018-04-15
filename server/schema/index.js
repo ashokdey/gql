@@ -4,6 +4,7 @@ const {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLID,
+  GraphQLList,
 } = graphQL;
 
 const {
@@ -28,6 +29,12 @@ const RootQuery = new GraphQLObjectType({
         return booksDB.find(el => el.id === args.id);
       }
     },
+    books: {
+      type: new GraphQLList(Book),
+      resolve(parent, args) {
+        return booksDB;
+      },
+    },
     author: {
       type: Author,
       args: {
@@ -36,7 +43,13 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return authorsDB.find(el => el.id === args.id);
       }
-    }
+    },
+    authors: {
+      type: new GraphQLList(Author),
+      resolve(parent, args) {
+        return authorsDB;
+      }
+    },
   },
 });
 
