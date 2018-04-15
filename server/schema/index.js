@@ -76,7 +76,7 @@ const Mutation = new GraphQLObjectType({
         });
 
         // save the user to database
-        author.save();
+        return author.save();
       }
     },
   },
