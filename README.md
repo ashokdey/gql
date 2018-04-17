@@ -14,5 +14,4 @@
 * Clone this repo
 * Run `npm install`
 * Run `cd client && npm install`
-* Run `mongod`
 * Finally to start the app, open a new terminal and run `npm run dev`
