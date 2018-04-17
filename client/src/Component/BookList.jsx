@@ -13,7 +13,6 @@ const getAllBooks = gql`
 
 class BookList extends Component {
   render() {
-    console.log(this.props);
     const { loading } = this.props.data;
     const { books } = this.props.data;
 
