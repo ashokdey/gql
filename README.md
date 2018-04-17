@@ -1,6 +1,6 @@
 # Fullstack GraphQL App
 
-### Texh Stack
+### Tech Stack
 
 * NodeJS for server
 * Express framework for web
