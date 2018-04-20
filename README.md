@@ -12,6 +12,5 @@
 ### Howo to RUN
 
 * Clone this repo
-* Run `npm install`
-* Run `cd client && npm install`
-* Finally to start the app, open a new terminal and run `npm run dev`
+* Run `npm run setup/yarn setup`
+* Then run `npm run dev/yarn dev`
