@@ -4,25 +4,60 @@ import { graphql } from 'react-apollo';
 import { getAuthorsQuery } from '../Queries';
 
 class AddBook extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      authorId: '',
+      gnere: '',
+      name: '',
+    };
+  }
+
+  onNameChange = (e) => {
+    const name = e.target.value;
+    this.setState((previousState, currentProps) => {
+      return { ...previousState, name, };
+    });
+  }
+
+  onGnereChange = (e) => {
+    const gnere = e.target.value;
+    this.setState((previousState, currentProps) => {
+      return { ...previousState, gnere, };
+    });
+  }
+
+  onAuthorChange = (e) => {
+    const authorId = e.target.value;
+    this.setState((previousState, currentProps) => {
+      return { ...previousState, authorId, };
+    });
+  }
+
+  submit = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+  }
+
   render() {
     const { loading } = this.props.data;
     const { authors } = this.props.data;
 
     return (
-      <form id="add-book">
+      <form id="add-book" onSubmit={this.submit}>
         <div className="field">
           <label>Book Name: </label>
-          <input type="text" />
+          <input type="text" value={this.state.name} onChange={this.onNameChange} />
         </div>
 
         <div className="field">
           <label>Gnere: </label>
-          <input type="text" />
+          <input type="text" value={this.state.gnere} onChange={this.onGnereChange} />
         </div>
 
         <div className="field">
           <label>Select Author: </label>
-          <select disabled={loading}>
+          <select disabled={loading} onChange={this.onAuthorChange}>
             <option>Select Author</option>
             {authors &&
               authors.length &&
