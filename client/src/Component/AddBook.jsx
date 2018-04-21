@@ -8,7 +8,7 @@ class AddBook extends Component {
     super(props);
     this.state = {
       authorId: '',
-      gnere: '',
+      genre: '',
       name: '',
     };
   }
@@ -21,9 +21,9 @@ class AddBook extends Component {
   }
 
   onGnereChange = (e) => {
-    const gnere = e.target.value;
+    const genre = e.target.value;
     this.setState((previousState, currentProps) => {
-      return { ...previousState, gnere, };
+      return { ...previousState, genre, };
     });
   }
 
@@ -37,6 +37,13 @@ class AddBook extends Component {
   submit = (e) => {
     e.preventDefault();
     console.log(this.state);
+    this.props.addBookMutation({
+      variables: {
+        name: this.state.name,
+        genre: this.state.genre,
+        authorId: this.state.authorId,
+      }
+    });
   }
 
   render() {
