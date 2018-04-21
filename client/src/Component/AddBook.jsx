@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo';
+import { graphql, compose } from 'react-apollo';
 
-import { getAuthorsQuery } from '../Queries';
+import { getAuthorsQuery, addBookMutation } from '../Queries';
 
 class AddBook extends Component {
   constructor(props) {
@@ -40,8 +40,8 @@ class AddBook extends Component {
   }
 
   render() {
-    const { loading } = this.props.data;
-    const { authors } = this.props.data;
+    const { loading } = this.props.getAuthorsQuery;
+    const { authors } = this.props.getAuthorsQuery;
 
     return (
       <form id="add-book" onSubmit={this.submit}>
@@ -73,4 +73,7 @@ class AddBook extends Component {
   }
 }
 
-export default graphql(getAuthorsQuery)(AddBook);
+export default compose(
+  graphql(getAuthorsQuery, { name: "getAuthorsQuery" }),
+  graphql(addBookMutation, { name: "addBookMutation" }),
+)(AddBook);

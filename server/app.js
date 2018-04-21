@@ -13,7 +13,7 @@ app.use(cors());
 app.use(cors());
 // use the graphql middleware to accept ql queries
 app.use(
-  '/gql',
+  '/ql',
   graphQLHTTP({
     schema,
     graphiql: true

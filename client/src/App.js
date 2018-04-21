@@ -8,7 +8,7 @@ import AddBook from './Component/AddBook';
 
 // Apollo Setup
 const client = new ApolloClient({
-  uri: 'http://localhost:5050/gql'
+  uri: 'http://localhost:5050/ql'
 });
 
 class App extends Component {
