@@ -7,7 +7,7 @@ class AddBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authorId: '',
+      authorId: 0,
       genre: '',
       name: '',
     };
@@ -45,6 +45,13 @@ class AddBook extends Component {
       },
       refetchQueries: [{ query: getAllBooks }],
     });
+    this.setState((previousState, currentProps) => {
+      return {
+        authorId: 0,
+        genre: '',
+        name: '',
+      };
+    })
   }
 
   render() {
@@ -60,13 +67,13 @@ class AddBook extends Component {
 
         <div className="field">
           <label>Gnere: </label>
-          <input type="text" value={this.state.gnere} onChange={this.onGnereChange} />
+          <input type="text" value={this.state.genre} onChange={this.onGnereChange} />
         </div>
 
         <div className="field">
           <label>Select Author: </label>
-          <select disabled={loading} onChange={this.onAuthorChange}>
-            <option>Select Author</option>
+          <select value={this.state.authorId} disabled={loading} onChange={this.onAuthorChange}>
+            <option value={0}>Select Author</option>
             {authors &&
               authors.length &&
               authors.map(author => (
